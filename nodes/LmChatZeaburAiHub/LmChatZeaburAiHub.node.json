@@ -1,0 +1,39 @@
+{
+    "node": "n8n-nodes-zeabur.lmChatZeaburAiHub",
+    "nodeVersion": "1.0",
+    "codexVersion": "1.0",
+    "categories": [
+        "AI"
+    ],
+    "subcategories": {
+        "AI": [
+            "Language Models",
+            "Root Nodes"
+        ],
+        "Language Models": [
+            "Chat Models (Recommended)"
+        ]
+    },
+    "resources": {
+        "credentialDocumentation": [
+            {
+                "url": "https://zeabur.com/docs/ai-hub"
+            }
+        ],
+        "primaryDocumentation": [
+            {
+                "url": "https://zeabur.com/docs/ai-hub/n8n-integration"
+            }
+        ]
+    },
+    "alias": [
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "OpenAI",
+        "LLM",
+        "AI",
+        "GPT",
+        "Agent"
+    ]
+}

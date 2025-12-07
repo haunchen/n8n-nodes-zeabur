@@ -1,247 +1,164 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-zeabur
 
-# n8n-nodes-starter
+這是一個 [n8n](https://n8n.io/) 社群節點，用於整合 [Zeabur AI Hub](https://zeabur.com/ai-hub)。
 
-This starter repository helps you build custom integrations for [n8n](https://n8n.io). It includes example nodes, credentials, the node linter, and all the tooling you need to get started.
+Zeabur AI Hub 提供統一的 API 存取多種 AI 模型，包括 OpenAI GPT、Claude、Gemini 等，讓你可以在 n8n 工作流程中輕鬆使用各種 AI 功能。
 
-## Quick Start
+![Zeabur AI Hub Node](https://raw.githubusercontent.com/zeabur/n8n-nodes-zeabur/main/docs/screenshot.png)
 
-> [!TIP]
-> **New to building n8n nodes?** The fastest way to get started is with `npm create @n8n/node`. This command scaffolds a complete node package for you using the [@n8n/node-cli](https://www.npmjs.com/package/@n8n/node-cli).
+## ✨ 功能特色
 
-**To create a new node package from scratch:**
+- 🤖 **聊天完成** - 使用 GPT-4、Claude、Gemini 等模型進行對話
+- 🎨 **圖片生成** - 使用 DALL-E 生成圖片
+- 🔍 **圖片分析** - 使用視覺模型分析圖片內容
+- 🎙️ **語音轉文字** - 使用 Whisper 轉錄音訊
+- 📢 **文字轉語音** - 使用 TTS 生成語音
+- 📊 **嵌入向量** - 生成文字嵌入向量
 
-```bash
-npm create @n8n/node
-```
+## 📋 前置需求
 
-**Already using this starter? Start developing with:**
+- n8n 版本 >= 0.200.0
+- [Zeabur AI Hub](https://zeabur.com/ai-hub) 帳戶和 API 金鑰
 
-```bash
-npm run dev
-```
+## 🚀 安裝方式
 
-This starts n8n with your nodes loaded and hot reload enabled.
+### 方法一：透過 n8n 社群節點安裝
 
-## What's Included
+1. 進入 **Settings** > **Community Nodes**
+2. 搜尋 `n8n-nodes-zeabur`
+3. 點擊 **Install**
 
-This starter repository includes two example nodes to learn from:
-
-- **[Example Node](nodes/Example/)** - A simple starter node that shows the basic structure with a custom `execute` method
-- **[GitHub Issues Node](nodes/GithubIssues/)** - A complete, production-ready example built using the **declarative style**:
-  - **Low-code approach** - Define operations declaratively without writing request logic
-  - Multiple resources (Issues, Comments)
-  - Multiple operations (Get, Get All, Create)
-  - Two authentication methods (OAuth2 and Personal Access Token)
-  - List search functionality for dynamic dropdowns
-  - Proper error handling and typing
-  - Ideal for HTTP API-based integrations
-
-> [!TIP]
-> The declarative/low-code style (used in GitHub Issues) is the recommended approach for building nodes that interact with HTTP APIs. It significantly reduces boilerplate code and handles requests automatically.
-
-Browse these examples to understand both approaches, then modify them or create your own.
-
-## Finding Inspiration
-
-Looking for more examples? Check out these resources:
-
-- **[npm Community Nodes](https://www.npmjs.com/search?q=keywords:n8n-community-node-package)** - Browse thousands of community-built nodes on npm using the `n8n-community-node-package` tag
-- **[n8n Built-in Nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes)** - Study the source code of n8n's official nodes for production-ready patterns and best practices
-- **[n8n Credentials](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/credentials)** - See how authentication is implemented for various services
-
-These are excellent resources to understand how to structure your nodes, handle different API patterns, and implement advanced features.
-
-## Prerequisites
-
-Before you begin, install the following on your development machine:
-
-### Required
-
-- **[Node.js](https://nodejs.org/)** (v22 or higher) and npm
-  - Linux/Mac/WSL: Install via [nvm](https://github.com/nvm-sh/nvm)
-  - Windows: Follow [Microsoft's NodeJS guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
-- **[git](https://git-scm.com/downloads)**
-
-### Recommended
-
-- Follow n8n's [development environment setup guide](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/)
-
-> [!NOTE]
-> The `@n8n/node-cli` is included as a dev dependency and will be installed automatically when you run `npm install`. The CLI includes n8n for local development, so you don't need to install n8n globally.
-
-## Getting Started with this Starter
-
-Follow these steps to create your own n8n community node package:
-
-### 1. Create Your Repository
-
-[Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template, then clone it:
+### 方法二：手動安裝
 
 ```bash
-git clone https://github.com/<your-organization>/<your-repo-name>.git
-cd <your-repo-name>
+# 進入 n8n 自訂節點目錄
+cd ~/.n8n/custom
+
+# 安裝套件
+npm install n8n-nodes-zeabur
 ```
 
-### 2. Install Dependencies
+### 方法三：Docker 安裝
 
-```bash
-npm install
+在 Docker 環境中，設定環境變數：
+
+```yaml
+environment:
+  - N8N_CUSTOM_EXTENSIONS=n8n-nodes-zeabur
 ```
 
-This installs all required dependencies including the `@n8n/node-cli`.
+## ⚙️ 設定憑證
 
-### 3. Explore the Examples
+1. 前往 [Zeabur AI Hub](https://zeabur.com/ai-hub) 建立 API 金鑰
+2. 在 n8n 中新增憑證，選擇 **Zeabur AI Hub API**
+3. 填入 API 金鑰並選擇區域端點
 
-Browse the example nodes in [nodes/](nodes/) and [credentials/](credentials/) to understand the structure:
+### 可用區域端點
 
-- Start with [nodes/Example/](nodes/Example/) for a basic node
-- Study [nodes/GithubIssues/](nodes/GithubIssues/) for a real-world implementation
+| 區域 | 端點 |
+|------|------|
+| HND1 - 東京，日本 | `https://hnd1.aihub.zeabur.ai/v1` |
+| SFO1 - 舊金山，美國 | `https://sfo1.aihub.zeabur.ai/v1` |
 
-### 4. Build Your Node
+## 📖 使用方式
 
-Edit the example nodes to fit your use case, or create new node files by copying the structure from [nodes/Example/](nodes/Example/).
+### 聊天完成
 
-> [!TIP]
-> If you want to scaffold a completely new node package, use `npm create @n8n/node` to start fresh with the CLI's interactive generator.
+使用 AI 模型進行對話：
 
-### 5. Configure Your Package
+1. 新增 **Zeabur AI Hub** 節點
+2. 選擇 **Resource**: Chat
+3. 選擇 **Operation**: Complete
+4. 選擇模型（例如 `gpt-4o-mini`）
+5. 輸入 Prompt
+6. 可選：設定 System Message 來定義 AI 角色
 
-Update `package.json` with your details:
+### 圖片生成
 
-- `name` - Your package name (must start with `n8n-nodes-`)
-- `author` - Your name and email
-- `repository` - Your repository URL
-- `description` - What your node does
+使用 DALL-E 生成圖片：
 
-Make sure your node is registered in the `n8n.nodes` array.
+1. 選擇 **Resource**: Image
+2. 選擇 **Operation**: Generate
+3. 選擇模型（`dall-e-3` 或 `dall-e-2`）
+4. 輸入圖片描述
+5. 可選：設定尺寸、品質和風格
 
-### 6. Develop and Test Locally
+### 圖片分析
 
-Start n8n with your node loaded:
+分析圖片內容：
 
-```bash
-npm run dev
-```
+1. 選擇 **Resource**: Image
+2. 選擇 **Operation**: Analyze
+3. 選擇支援視覺的模型（例如 `gpt-4o`）
+4. 輸入圖片 URL
+5. 輸入關於圖片的問題
 
-This command runs `n8n-node dev` which:
+### 語音轉文字
 
-- Builds your node with watch mode
-- Starts n8n with your node available
-- Automatically rebuilds when you make changes
-- Opens n8n in your browser (usually http://localhost:5678)
+轉錄音訊檔案：
 
-You can now test your node in n8n workflows!
+1. 選擇 **Resource**: Audio
+2. 選擇 **Operation**: Transcribe
+3. 指定包含音訊檔案的二進位欄位名稱
+4. 可選：設定語言和回應格式
 
-> [!NOTE]
-> Learn more about CLI commands in the [@n8n/node-cli documentation](https://www.npmjs.com/package/@n8n/node-cli).
+### 文字轉語音
 
-### 7. Lint Your Code
+生成語音：
 
-Check for errors:
+1. 選擇 **Resource**: Audio
+2. 選擇 **Operation**: Generate Speech
+3. 輸入要轉換的文字
+4. 選擇語音音色
 
-```bash
-npm run lint
-```
+### 嵌入向量
 
-Auto-fix issues when possible:
+生成文字嵌入：
 
-```bash
-npm run lint:fix
-```
+1. 選擇 **Resource**: Embeddings
+2. 選擇 **Operation**: Create
+3. 選擇嵌入模型
+4. 輸入要嵌入的文字
 
-### 8. Build for Production
+## 🔧 支援的模型
 
-When ready to publish:
+Zeabur AI Hub 支援多種 AI 模型，包括但不限於：
 
-```bash
-npm run build
-```
+### 聊天模型
+- OpenAI: `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`, `gpt-3.5-turbo`
+- Anthropic: `claude-3-5-sonnet`, `claude-3-opus`, `claude-3-haiku`
+- Google: `gemini-1.5-pro`, `gemini-1.5-flash`
 
-This compiles your TypeScript code to the `dist/` folder.
+### 圖片模型
+- `dall-e-3`, `dall-e-2`
 
-### 9. Prepare for Publishing
+### 音訊模型
+- TTS: `tts-1`, `tts-1-hd`
+- STT: `whisper-1`
 
-Before publishing:
+### 嵌入模型
+- `text-embedding-3-small`, `text-embedding-3-large`, `text-embedding-ada-002`
 
-1. **Update documentation**: Replace this README with your node's documentation. Use [README_TEMPLATE.md](README_TEMPLATE.md) as a starting point.
-2. **Update the LICENSE**: Add your details to the [LICENSE](LICENSE.md) file.
-3. **Test thoroughly**: Ensure your node works in different scenarios.
+## 🆚 與直接使用 OpenAI 節點的差異
 
-### 10. Publish to npm
+| 功能 | OpenAI 節點 | Zeabur AI Hub 節點 |
+|------|-------------|-------------------|
+| 區域選擇 | 手動輸入 URL | 下拉選單 |
+| 品牌識別 | OpenAI 圖標 | Zeabur 專屬圖標 |
+| 預設設定 | 需手動調整 | 已針對 Zeabur 優化 |
+| 多模型支援 | 僅 OpenAI | 支援 Claude、Gemini 等 |
+| 文檔連結 | OpenAI 官方 | Zeabur 專屬文檔 |
 
-Publish your package to make it available to the n8n community:
+## 📚 相關資源
 
-```bash
-npm publish
-```
+- [Zeabur AI Hub 文檔](https://zeabur.com/docs/ai-hub)
+- [n8n 整合指南](https://zeabur.com/docs/ai-hub/n8n-integration)
+- [n8n 社群節點開發](https://docs.n8n.io/integrations/creating-nodes/)
 
-Learn more about [publishing to npm](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+## 🤝 貢獻
 
-### 11. Submit for Verification (Optional)
+歡迎提交 Issue 和 Pull Request！
 
-Get your node verified for n8n Cloud:
+## 📄 授權
 
-1. Ensure your node meets the [requirements](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/):
-   - Uses MIT license ✅ (included in this starter)
-   - No external package dependencies
-   - Follows n8n's design guidelines
-   - Passes quality and security review
-
-2. Submit through the [n8n Creator Portal](https://creators.n8n.io/nodes)
-
-**Benefits of verification:**
-
-- Available directly in n8n Cloud
-- Discoverable in the n8n nodes panel
-- Verified badge for quality assurance
-- Increased visibility in the n8n community
-
-## Available Scripts
-
-This starter includes several npm scripts to streamline development:
-
-| Script                | Description                                                      |
-| --------------------- | ---------------------------------------------------------------- |
-| `npm run dev`         | Start n8n with your node and watch for changes (runs `n8n-node dev`) |
-| `npm run build`       | Compile TypeScript to JavaScript for production (runs `n8n-node build`) |
-| `npm run build:watch` | Build in watch mode (auto-rebuild on changes)                    |
-| `npm run lint`        | Check your code for errors and style issues (runs `n8n-node lint`) |
-| `npm run lint:fix`    | Automatically fix linting issues when possible (runs `n8n-node lint --fix`) |
-| `npm run release`     | Create a new release (runs `n8n-node release`)                   |
-
-> [!TIP]
-> These scripts use the [@n8n/node-cli](https://www.npmjs.com/package/@n8n/node-cli) under the hood. You can also run CLI commands directly, e.g., `npx n8n-node dev`.
-
-## Troubleshooting
-
-### My node doesn't appear in n8n
-
-1. Make sure you ran `npm install` to install dependencies
-2. Check that your node is listed in `package.json` under `n8n.nodes`
-3. Restart the dev server with `npm run dev`
-4. Check the console for any error messages
-
-### Linting errors
-
-Run `npm run lint:fix` to automatically fix most common issues. For remaining errors, check the [n8n node development guidelines](https://docs.n8n.io/integrations/creating-nodes/).
-
-### TypeScript errors
-
-Make sure you're using Node.js v22 or higher and have run `npm install` to get all type definitions.
-
-## Resources
-
-- **[n8n Node Documentation](https://docs.n8n.io/integrations/creating-nodes/)** - Complete guide to building nodes
-- **[n8n Community Forum](https://community.n8n.io/)** - Get help and share your nodes
-- **[@n8n/node-cli Documentation](https://www.npmjs.com/package/@n8n/node-cli)** - CLI tool reference
-- **[n8n Creator Portal](https://creators.n8n.io/nodes)** - Submit your node for verification
-- **[Submit Community Nodes Guide](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/)** - Verification requirements and process
-
-## Contributing
-
-Have suggestions for improving this starter? [Open an issue](https://github.com/n8n-io/n8n-nodes-starter/issues) or submit a pull request!
-
-## License
-
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+MIT License - 詳見 [LICENSE](LICENSE.md)

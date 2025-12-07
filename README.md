@@ -2,22 +2,20 @@
 
 這是一個 [n8n](https://n8n.io/) 社群節點，用於整合 [Zeabur AI Hub](https://zeabur.com/ai-hub)。
 
-Zeabur AI Hub 提供統一的 API 存取多種 AI 模型，包括 OpenAI GPT、Claude、Gemini 等，讓你可以在 n8n 工作流程中輕鬆使用各種 AI 功能。
+Zeabur AI Hub 提供統一的 API 存取多種 AI 模型，包括 Claude、Gemini、GPT、DeepSeek、Qwen 等，讓你可以在 n8n 工作流程中輕鬆使用各種 AI 功能。
 
 ![Zeabur AI Hub Node](https://raw.githubusercontent.com/zeabur/n8n-nodes-zeabur/main/docs/screenshot.png)
 
 ## ✨ 功能特色
 
-- 🤖 **聊天完成** - 使用 GPT-4、Claude、Gemini 等模型進行對話
-- 🎨 **圖片生成** - 使用 DALL-E 生成圖片
-- 🔍 **圖片分析** - 使用視覺模型分析圖片內容
-- 🎙️ **語音轉文字** - 使用 Whisper 轉錄音訊
-- 📢 **文字轉語音** - 使用 TTS 生成語音
-- 📊 **嵌入向量** - 生成文字嵌入向量
+- 🤖 **AI Agent 整合** - 提供 Chat Model 節點，可搭配 n8n 的 AI Agent 使用
+- � **多模型支援** - 透過單一 API 存取 Claude、Gemini、GPT、DeepSeek、Qwen、GLM、Kimi 等模型
+- � **動態模型清單** - 自動從 API 獲取最新可用模型
+- � **多區域端點** - 支援東京 (HND1) 和舊金山 (SFO1) 兩個區域
 
 ## 📋 前置需求
 
-- n8n 版本 >= 0.200.0
+- n8n 版本 >= 1.0.0
 - [Zeabur AI Hub](https://zeabur.com/ai-hub) 帳戶和 API 金鑰
 
 ## 🚀 安裝方式
@@ -62,97 +60,74 @@ environment:
 
 ## 📖 使用方式
 
-### 聊天完成
+### 搭配 AI Agent 使用
 
-使用 AI 模型進行對話：
+此節點提供 **Zeabur AI Hub Chat Model**，可作為 n8n AI Agent 的語言模型：
 
-1. 新增 **Zeabur AI Hub** 節點
-2. 選擇 **Resource**: Chat
-3. 選擇 **Operation**: Complete
-4. 選擇模型（例如 `gpt-4o-mini`）
-5. 輸入 Prompt
-6. 可選：設定 System Message 來定義 AI 角色
-
-### 圖片生成
-
-使用 DALL-E 生成圖片：
-
-1. 選擇 **Resource**: Image
-2. 選擇 **Operation**: Generate
-3. 選擇模型（`dall-e-3` 或 `dall-e-2`）
-4. 輸入圖片描述
-5. 可選：設定尺寸、品質和風格
-
-### 圖片分析
-
-分析圖片內容：
-
-1. 選擇 **Resource**: Image
-2. 選擇 **Operation**: Analyze
-3. 選擇支援視覺的模型（例如 `gpt-4o`）
-4. 輸入圖片 URL
-5. 輸入關於圖片的問題
-
-### 語音轉文字
-
-轉錄音訊檔案：
-
-1. 選擇 **Resource**: Audio
-2. 選擇 **Operation**: Transcribe
-3. 指定包含音訊檔案的二進位欄位名稱
-4. 可選：設定語言和回應格式
-
-### 文字轉語音
-
-生成語音：
-
-1. 選擇 **Resource**: Audio
-2. 選擇 **Operation**: Generate Speech
-3. 輸入要轉換的文字
-4. 選擇語音音色
-
-### 嵌入向量
-
-生成文字嵌入：
-
-1. 選擇 **Resource**: Embeddings
-2. 選擇 **Operation**: Create
-3. 選擇嵌入模型
-4. 輸入要嵌入的文字
+1. 新增 **AI Agent** 節點
+2. 在 **Chat Model** 連接點新增 **Zeabur AI Hub Chat Model**
+3. 設定憑證
+4. 選擇模型（從清單選取或手動輸入模型 ID）
+5. 可選：調整 Temperature、Max Tokens 等參數
 
 ## 🔧 支援的模型
 
-Zeabur AI Hub 支援多種 AI 模型，包括但不限於：
+Zeabur AI Hub 支援多種 AI 模型，完整清單請參考 [模型總表](https://zeabur.com/models)：
 
-### 聊天模型
-- OpenAI: `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`, `gpt-3.5-turbo`
-- Anthropic: `claude-3-5-sonnet`, `claude-3-opus`, `claude-3-haiku`
-- Google: `gemini-1.5-pro`, `gemini-1.5-flash`
+### Claude 模型 (Anthropic)
+- `claude-sonnet-4-5` - Claude Sonnet 4.5
+- `claude-haiku-4-5` - Claude Haiku 4.5
 
-### 圖片模型
-- `dall-e-3`, `dall-e-2`
+### Gemini 模型 (Google)
+- `gemini-3-pro-preview` - Gemini 3 Pro Preview
+- `gemini-2.5-pro` - Gemini 2.5 Pro
+- `gemini-2.5-flash` - Gemini 2.5 Flash
+- `gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
 
-### 音訊模型
-- TTS: `tts-1`, `tts-1-hd`
-- STT: `whisper-1`
+### GPT 模型 (OpenAI)
+- `gpt-5` - GPT-5
+- `gpt-5-mini` - GPT-5 mini
+- `gpt-4.1` - GPT-4.1
+- `gpt-4.1-mini` - GPT-4.1 mini
+- `gpt-4o` - GPT-4o
+- `gpt-4o-mini` - GPT-4o mini
 
-### 嵌入模型
-- `text-embedding-3-small`, `text-embedding-3-large`, `text-embedding-ada-002`
+### Grok 模型 (xAI)
+- `grok-4-fast` - Grok 4 Fast
+
+### DeepSeek 模型
+- `deepseek-v3.2-exp` - DeepSeek v3.2 Exp
+
+### GLM 模型 (智譜 AI)
+- `glm-4.6` - GLM-4.6
+
+### Llama 模型 (Meta)
+- `llama-3.3-70b` - Llama 3.3 70B
+
+### Qwen 模型 (阿里巴巴)
+- `qwen-3-32b` - Qwen 3 32B
+- `qwen-3-next-80b` - Qwen 3 Next 80B
+
+### Kimi 模型 (月之暗面)
+- `kimi-k2-thinking` - Kimi K2 Thinking
+
+> 💡 模型清單持續更新中，最新可用模型請參考 [Zeabur AI Hub 模型頁面](https://zeabur.com/models)
 
 ## 🆚 與直接使用 OpenAI 節點的差異
 
 | 功能 | OpenAI 節點 | Zeabur AI Hub 節點 |
 |------|-------------|-------------------|
-| 區域選擇 | 手動輸入 URL | 下拉選單 |
+| 多模型存取 | 僅 OpenAI 模型 | Claude、Gemini、GPT、DeepSeek、Qwen 等 |
+| 區域選擇 | 手動輸入 URL | 下拉選單選擇區域 |
+| 模型清單 | 靜態列表 | 動態從 API 獲取 |
 | 品牌識別 | OpenAI 圖標 | Zeabur 專屬圖標 |
 | 預設設定 | 需手動調整 | 已針對 Zeabur 優化 |
-| 多模型支援 | 僅 OpenAI | 支援 Claude、Gemini 等 |
-| 文檔連結 | OpenAI 官方 | Zeabur 專屬文檔 |
 
 ## 📚 相關資源
 
-- [Zeabur AI Hub 文檔](https://zeabur.com/docs/ai-hub)
-- [n8n 整合指南](https://zeabur.com/docs/ai-hub/n8n-integration)
+- [Zeabur AI Hub](https://zeabur.com/ai-hub)
+- [模型總表](https://zeabur.com/models)
+- [Zeabur 文檔](https://zeabur.com/docs)
 - [n8n 社群節點開發](https://docs.n8n.io/integrations/creating-nodes/)
 
 ## 🤝 貢獻

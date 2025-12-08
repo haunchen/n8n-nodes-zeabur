@@ -1,90 +1,92 @@
 # n8n-nodes-zeabur
 
-這是一個 [n8n](https://n8n.io/) 社群節點，用於整合 [Zeabur AI Hub](https://zeabur.com/ai-hub)。
+This is an [n8n](https://n8n.io/) community node for integrating with [Zeabur AI Hub](https://zeabur.com/ai-hub).
 
-Zeabur AI Hub 提供統一的 API 存取多種 AI 模型，包括 Claude、Gemini、GPT、DeepSeek、Qwen 等，讓你可以在 n8n 工作流程中輕鬆使用各種 AI 功能。
+Zeabur AI Hub provides unified API access to multiple AI models, including Claude, Gemini, GPT, DeepSeek, Qwen, and more, allowing you to easily use various AI capabilities in your n8n workflows.
+
+[中文文檔 (Chinese Documentation)](README.zh-TW.md)
 
 ![Zeabur AI Hub Node](https://raw.githubusercontent.com/zeabur/n8n-nodes-zeabur/main/docs/screenshot.png)
 
-## ✨ 功能特色
+## ✨ Features
 
-- 🤖 **AI Agent 整合** - 提供 Chat Model 節點，可搭配 n8n 的 AI Agent 使用
-- � **多模型支援** - 透過單一 API 存取 Claude、Gemini、GPT、DeepSeek、Qwen、GLM、Kimi 等模型
-- � **動態模型清單** - 自動從 API 獲取最新可用模型
-- � **多區域端點** - 支援東京 (HND1) 和舊金山 (SFO1) 兩個區域
+- 🤖 **AI Agent Integration** - Provides a Chat Model node that works with n8n's AI Agent
+- 🌐 **Multi-Model Support** - Access Claude, Gemini, GPT, DeepSeek, Qwen, GLM, Kimi, and more through a single API
+- 📋 **Dynamic Model List** - Automatically fetches the latest available models from the API
+- 🌍 **Multi-Region Endpoints** - Supports Tokyo (HND1) and San Francisco (SFO1) regions
 
-## 📋 前置需求
+## 📋 Prerequisites
 
-- n8n 版本 >= 1.0.0
-- [Zeabur AI Hub](https://zeabur.com/ai-hub) 帳戶和 API 金鑰
+- n8n version >= 1.0.0
+- [Zeabur AI Hub](https://zeabur.com/ai-hub) account and API key
 
-## 🚀 安裝方式
+## 🚀 Installation
 
-### 方法一：透過 n8n 社群節點安裝
+### Method 1: Install via n8n Community Nodes
 
-1. 進入 **Settings** > **Community Nodes**
-2. 搜尋 `n8n-nodes-zeabur`
-3. 點擊 **Install**
+1. Go to **Settings** > **Community Nodes**
+2. Search for `n8n-nodes-zeabur`
+3. Click **Install**
 
-### 方法二：手動安裝
+### Method 2: Manual Installation
 
 ```bash
-# 進入 n8n 自訂節點目錄
+# Navigate to n8n custom nodes directory
 cd ~/.n8n/custom
 
-# 安裝套件
+# Install the package
 npm install n8n-nodes-zeabur
 ```
 
-### 方法三：Docker 安裝
+### Method 3: Docker Installation
 
-在 Docker 環境中，設定環境變數：
+In a Docker environment, set the environment variable:
 
 ```yaml
 environment:
   - N8N_CUSTOM_EXTENSIONS=n8n-nodes-zeabur
 ```
 
-## ⚙️ 設定憑證
+## ⚙️ Credential Setup
 
-1. 前往 [Zeabur AI Hub](https://zeabur.com/ai-hub) 建立 API 金鑰
-2. 在 n8n 中新增憑證，選擇 **Zeabur AI Hub API**
-3. 填入 API 金鑰並選擇區域端點
+1. Go to [Zeabur AI Hub](https://zeabur.com/ai-hub) to create an API key
+2. In n8n, add a new credential and select **Zeabur AI Hub API**
+3. Enter your API key and select a region endpoint
 
-### 可用區域端點
+### Available Region Endpoints
 
-| 區域 | 端點 |
-|------|------|
-| HND1 - 東京，日本 | `https://hnd1.aihub.zeabur.ai/v1` |
-| SFO1 - 舊金山，美國 | `https://sfo1.aihub.zeabur.ai/v1` |
+| Region | Endpoint |
+|--------|----------|
+| HND1 - Tokyo, Japan | `https://hnd1.aihub.zeabur.ai/v1` |
+| SFO1 - San Francisco, USA | `https://sfo1.aihub.zeabur.ai/v1` |
 
-## 📖 使用方式
+## 📖 Usage
 
-### 搭配 AI Agent 使用
+### Using with AI Agent
 
-此節點提供 **Zeabur AI Hub Chat Model**，可作為 n8n AI Agent 的語言模型：
+This node provides **Zeabur AI Hub Chat Model**, which can be used as a language model for n8n AI Agent:
 
-1. 新增 **AI Agent** 節點
-2. 在 **Chat Model** 連接點新增 **Zeabur AI Hub Chat Model**
-3. 設定憑證
-4. 選擇模型（從清單選取或手動輸入模型 ID）
-5. 可選：調整 Temperature、Max Tokens 等參數
+1. Add an **AI Agent** node
+2. Add **Zeabur AI Hub Chat Model** to the **Chat Model** connection
+3. Configure credentials
+4. Select a model (choose from the list or manually enter a model ID)
+5. Optional: Adjust Temperature, Max Tokens, and other parameters
 
-## 🔧 支援的模型
+## 🔧 Supported Models
 
-Zeabur AI Hub 支援多種 AI 模型，完整清單請參考 [模型總表](https://zeabur.com/models)：
+Zeabur AI Hub supports a wide variety of AI models. For the complete list, please refer to the [Models Page](https://zeabur.com/models):
 
-### Claude 模型 (Anthropic)
+### Claude Models (Anthropic)
 - `claude-sonnet-4-5` - Claude Sonnet 4.5
 - `claude-haiku-4-5` - Claude Haiku 4.5
 
-### Gemini 模型 (Google)
+### Gemini Models (Google)
 - `gemini-3-pro-preview` - Gemini 3 Pro Preview
 - `gemini-2.5-pro` - Gemini 2.5 Pro
 - `gemini-2.5-flash` - Gemini 2.5 Flash
 - `gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
 
-### GPT 模型 (OpenAI)
+### GPT Models (OpenAI)
 - `gpt-5` - GPT-5
 - `gpt-5-mini` - GPT-5 mini
 - `gpt-4.1` - GPT-4.1
@@ -92,48 +94,48 @@ Zeabur AI Hub 支援多種 AI 模型，完整清單請參考 [模型總表](http
 - `gpt-4o` - GPT-4o
 - `gpt-4o-mini` - GPT-4o mini
 
-### Grok 模型 (xAI)
+### Grok Models (xAI)
 - `grok-4-fast` - Grok 4 Fast
 
-### DeepSeek 模型
+### DeepSeek Models
 - `deepseek-v3.2-exp` - DeepSeek v3.2 Exp
 
-### GLM 模型 (智譜 AI)
+### GLM Models (Zhipu AI)
 - `glm-4.6` - GLM-4.6
 
-### Llama 模型 (Meta)
+### Llama Models (Meta)
 - `llama-3.3-70b` - Llama 3.3 70B
 
-### Qwen 模型 (阿里巴巴)
+### Qwen Models (Alibaba)
 - `qwen-3-32b` - Qwen 3 32B
 - `qwen-3-next-80b` - Qwen 3 Next 80B
 
-### Kimi 模型 (月之暗面)
+### Kimi Models (Moonshot AI)
 - `kimi-k2-thinking` - Kimi K2 Thinking
 
-> 💡 模型清單持續更新中，最新可用模型請參考 [Zeabur AI Hub 模型頁面](https://zeabur.com/models)
+> 💡 The model list is continuously updated. For the latest available models, please visit the [Zeabur AI Hub Models Page](https://zeabur.com/models)
 
-## 🆚 與直接使用 OpenAI 節點的差異
+## 🆚 Differences from Using OpenAI Node Directly
 
-| 功能 | OpenAI 節點 | Zeabur AI Hub 節點 |
-|------|-------------|-------------------|
-| 多模型存取 | 僅 OpenAI 模型 | Claude、Gemini、GPT、DeepSeek、Qwen 等 |
-| 區域選擇 | 手動輸入 URL | 下拉選單選擇區域 |
-| 模型清單 | 靜態列表 | 動態從 API 獲取 |
-| 品牌識別 | OpenAI 圖標 | Zeabur 專屬圖標 |
-| 預設設定 | 需手動調整 | 已針對 Zeabur 優化 |
+| Feature | OpenAI Node | Zeabur AI Hub Node |
+|---------|-------------|-------------------|
+| Multi-Model Access | OpenAI models only | Claude, Gemini, GPT, DeepSeek, Qwen, and more |
+| Region Selection | Manual URL input | Dropdown menu for region selection |
+| Model List | Static list | Dynamically fetched from API |
+| Branding | OpenAI icon | Zeabur branded icon |
+| Default Settings | Manual adjustment required | Optimized for Zeabur |
 
-## 📚 相關資源
+## 📚 Resources
 
 - [Zeabur AI Hub](https://zeabur.com/ai-hub)
-- [模型總表](https://zeabur.com/models)
-- [Zeabur 文檔](https://zeabur.com/docs)
-- [n8n 社群節點開發](https://docs.n8n.io/integrations/creating-nodes/)
+- [Models Page](https://zeabur.com/models)
+- [Zeabur Documentation](https://zeabur.com/docs)
+- [n8n Community Node Development](https://docs.n8n.io/integrations/creating-nodes/)
 
-## 🤝 貢獻
+## 🤝 Contributing
 
-歡迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
-## 📄 授權
+## 📄 License
 
-MIT License - 詳見 [LICENSE](LICENSE.md)
+MIT License - See [LICENSE](LICENSE.md)

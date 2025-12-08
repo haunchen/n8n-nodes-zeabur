@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-zeabur",
 	"version": "0.1.0",
-	"description": "n8n 社群節點用於 Zeabur AI Hub 整合，支援 OpenAI、Claude、Gemini 等多種 AI 模型",
+	"description": "n8n community node for Zeabur AI Hub integration, supporting OpenAI, Claude, Gemini and more AI models",
 	"license": "MIT",
 	"homepage": "https://github.com/zeabur/n8n-nodes-zeabur",
 	"keywords": [

@@ -9,6 +9,47 @@ import {
 } from 'n8n-workflow';
 import { getConnectionHintNoticeField } from './utils';
 
+// N8nLlmTracingCallback - Required for execution animation in n8n UI
+// This callback reports LLM execution status to n8n frontend
+class N8nLlmTracingCallback {
+    name = 'N8nLlmTracingCallback';
+    awaitHandlers = true;
+
+    private executionFunctions: ISupplyDataFunctions;
+    private connectionType = NodeConnectionTypes.AiLanguageModel;
+    private runIndex = 0;
+
+    constructor(executionFunctions: ISupplyDataFunctions) {
+        this.executionFunctions = executionFunctions;
+    }
+
+    async handleLLMStart(
+        _llm: Record<string, unknown>,
+        prompts: string[],
+        _runId: string,
+    ): Promise<void> {
+        void _runId;
+        const { index } = this.executionFunctions.addInputData(this.connectionType, [
+            [{ json: { messages: prompts } }],
+        ]);
+        this.runIndex = index;
+    }
+
+    async handleLLMEnd(output: Record<string, unknown>, _runId: string): Promise<void> {
+        void _runId;
+        this.executionFunctions.addOutputData(this.connectionType, this.runIndex, [
+            [{ json: { response: output } }],
+        ]);
+    }
+
+    async handleLLMError(error: Error, _runId: string): Promise<void> {
+        void _runId;
+        this.executionFunctions.addOutputData(this.connectionType, this.runIndex, [
+            [{ json: { error: error.message } }],
+        ]);
+    }
+}
+
 interface OpenAIModel {
     id: string;
     object: string;
@@ -273,6 +314,8 @@ export class LmChatZeaburAiHub implements INodeType {
             },
             // Important: Zeabur AI Hub does not support Responses API, must disable it
             useResponsesApi: false,
+            // Enable execution animation in n8n UI
+            callbacks: [new N8nLlmTracingCallback(this)],
         });
 
         return {

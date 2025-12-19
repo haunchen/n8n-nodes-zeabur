@@ -128,6 +128,7 @@ async function searchModels(
     };
 }
 
+// eslint-disable-next-line @n8n/community-nodes/node-usable-as-tool
 export class LmChatZeaburAiHub implements INodeType {
     description: INodeTypeDescription = {
         displayName: 'Zeabur AI Hub Chat Model',
@@ -139,7 +140,6 @@ export class LmChatZeaburAiHub implements INodeType {
         defaults: {
             name: 'Zeabur AI Hub Chat Model',
         },
-        usableAsTool: true,
         codex: {
             categories: ['AI'],
             subcategories: {

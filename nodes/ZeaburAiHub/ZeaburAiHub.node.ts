@@ -19,6 +19,16 @@ interface OpenAIModelsResponse {
     data: OpenAIModel[];
 }
 
+interface ChatCompletionRequestBody {
+    model: string;
+    messages: Array<{ role: string; content: string }>;
+    temperature: number;
+    top_p: number;
+    frequency_penalty: number;
+    presence_penalty: number;
+    max_tokens?: number;
+}
+
 async function searchModels(
     this: ILoadOptionsFunctions,
     filter?: string,
@@ -87,6 +97,7 @@ async function searchModels(
     };
 }
 
+// eslint-disable-next-line @n8n/community-nodes/node-usable-as-tool
 export class ZeaburAiHub implements INodeType {
     description: INodeTypeDescription = {
         displayName: 'Zeabur AI Hub',
@@ -200,12 +211,12 @@ export class ZeaburAiHub implements INodeType {
                 },
                 options: [
                     {
-                        displayName: 'Sampling Temperature',
-                        name: 'temperature',
-                        default: 0.7,
-                        typeOptions: { maxValue: 2, minValue: 0, numberPrecision: 1 },
+                        displayName: 'Frequency Penalty',
+                        name: 'frequencyPenalty',
+                        default: 0,
+                        typeOptions: { maxValue: 2, minValue: -2, numberPrecision: 1 },
                         description:
-                            'Controls randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive.',
+                            "Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim",
                         type: 'number',
                     },
                     {
@@ -220,30 +231,30 @@ export class ZeaburAiHub implements INodeType {
                         },
                     },
                     {
-                        displayName: 'Top P',
-                        name: 'topP',
-                        default: 1,
-                        typeOptions: { maxValue: 1, minValue: 0, numberPrecision: 1 },
-                        description:
-                            'Controls diversity via nucleus sampling: 0.5 means half of all likelihood-weighted options are considered',
-                        type: 'number',
-                    },
-                    {
-                        displayName: 'Frequency Penalty',
-                        name: 'frequencyPenalty',
-                        default: 0,
-                        typeOptions: { maxValue: 2, minValue: -2, numberPrecision: 1 },
-                        description:
-                            "Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim",
-                        type: 'number',
-                    },
-                    {
                         displayName: 'Presence Penalty',
                         name: 'presencePenalty',
                         default: 0,
                         typeOptions: { maxValue: 2, minValue: -2, numberPrecision: 1 },
                         description:
                             "Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics",
+                        type: 'number',
+                    },
+                    {
+                        displayName: 'Sampling Temperature',
+                        name: 'temperature',
+                        default: 0.7,
+                        typeOptions: { maxValue: 2, minValue: 0, numberPrecision: 1 },
+                        description:
+                            'Controls randomness: Lowering results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive.',
+                        type: 'number',
+                    },
+                    {
+                        displayName: 'Top P',
+                        name: 'topP',
+                        default: 1,
+                        typeOptions: { maxValue: 1, minValue: 0, numberPrecision: 1 },
+                        description:
+                            'Controls diversity via nucleus sampling: 0.5 means half of all likelihood-weighted options are considered',
                         type: 'number',
                     },
                 ],
@@ -283,7 +294,7 @@ export class ZeaburAiHub implements INodeType {
                             ? 'https://sfo1.aihub.zeabur.ai/v1'
                             : 'https://hnd1.aihub.zeabur.ai/v1';
 
-                    const body: any = {
+                    const body: ChatCompletionRequestBody = {
                         model,
                         messages: [
                             {

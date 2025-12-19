@@ -45,7 +45,8 @@
 			"dist/credentials/ZeaburAIHubApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/LmChatZeaburAiHub/LmChatZeaburAiHub.node.js"
+			"dist/nodes/LmChatZeaburAiHub/LmChatZeaburAiHub.node.js",
+			"dist/nodes/ZeaburAiHub/ZeaburAiHub.node.js"
 		]
 	},
 	"devDependencies": {

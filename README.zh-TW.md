@@ -4,14 +4,13 @@
 
 Zeabur AI Hub 提供統一的 API 存取多種 AI 模型，包括 Claude、Gemini、GPT、DeepSeek、Qwen 等，讓你可以在 n8n 工作流程中輕鬆使用各種 AI 功能。
 
-![Zeabur AI Hub Node](https://raw.githubusercontent.com/zeabur/n8n-nodes-zeabur/main/docs/screenshot.png)
-
 ## ✨ 功能特色
 
-- 🤖 **AI Agent 整合** - 提供 Chat Model 節點，可搭配 n8n 的 AI Agent 使用
-- � **多模型支援** - 透過單一 API 存取 Claude、Gemini、GPT、DeepSeek、Qwen、GLM、Kimi 等模型
-- � **動態模型清單** - 自動從 API 獲取最新可用模型
-- � **多區域端點** - 支援東京 (HND1) 和舊金山 (SFO1) 兩個區域
+- 🤖 AI Agent 整合 - 提供 Chat Model 節點，可搭配 n8n 的 AI Agent 使用
+- 💬 獨立對話節點 - 可在工作流程中直接使用 Zeabur AI Hub，無需搭配 AI Agent
+- 🌐 多模型支援 - 透過單一 API 存取 Claude、Gemini、GPT、DeepSeek、Qwen、GLM、Kimi 等模型
+- 📋 動態模型清單 - 自動從 API 獲取最新可用模型
+- 🌍 多區域端點 - 支援東京 (HND1) 和舊金山 (SFO1) 兩個區域
 
 ## 📋 前置需求
 
@@ -20,30 +19,9 @@ Zeabur AI Hub 提供統一的 API 存取多種 AI 模型，包括 Claude、Gemin
 
 ## 🚀 安裝方式
 
-### 方法一：透過 n8n 社群節點安裝
-
 1. 進入 **Settings** > **Community Nodes**
-2. 搜尋 `n8n-nodes-zeabur`
+2. 搜尋 `@haunchen/n8n-nodes-zeabur`
 3. 點擊 **Install**
-
-### 方法二：手動安裝
-
-```bash
-# 進入 n8n 自訂節點目錄
-cd ~/.n8n/custom
-
-# 安裝套件
-npm install n8n-nodes-zeabur
-```
-
-### 方法三：Docker 安裝
-
-在 Docker 環境中，設定環境變數：
-
-```yaml
-environment:
-  - N8N_CUSTOM_EXTENSIONS=n8n-nodes-zeabur
-```
 
 ## ⚙️ 設定憑證
 
@@ -60,12 +38,22 @@ environment:
 
 ## 📖 使用方式
 
+### 獨立對話節點
+
+Zeabur AI Hub 節點可直接在工作流程中使用，進行簡單的對話完成：
+
+1. 在工作流程中新增 Zeabur AI Hub 節點
+2. 設定憑證
+3. 選擇模型（從清單選取或手動輸入模型 ID）
+4. 輸入訊息
+5. 可選：調整 Temperature、Max Tokens、Top P 和懲罰參數
+
 ### 搭配 AI Agent 使用
 
-此節點提供 **Zeabur AI Hub Chat Model**，可作為 n8n AI Agent 的語言模型：
+Zeabur AI Hub Chat Model 可作為 n8n AI Agent 的語言模型：
 
-1. 新增 **AI Agent** 節點
-2. 在 **Chat Model** 連接點新增 **Zeabur AI Hub Chat Model**
+1. 新增 AI Agent 節點
+2. 在 Chat Model 連接點新增 Zeabur AI Hub Chat Model
 3. 設定憑證
 4. 選擇模型（從清單選取或手動輸入模型 ID）
 5. 可選：調整 Temperature、Max Tokens 等參數
@@ -80,6 +68,7 @@ Zeabur AI Hub 支援多種 AI 模型，完整清單請參考 [模型總表](http
 
 ### Gemini 模型 (Google)
 - `gemini-3-pro-preview` - Gemini 3 Pro Preview
+- `gemini-3-flash-preview` - Gemini 3 Flash Preview
 - `gemini-2.5-pro` - Gemini 2.5 Pro
 - `gemini-2.5-flash` - Gemini 2.5 Flash
 - `gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
@@ -105,8 +94,8 @@ Zeabur AI Hub 支援多種 AI 模型，完整清單請參考 [模型總表](http
 - `llama-3.3-70b` - Llama 3.3 70B
 
 ### Qwen 模型 (阿里巴巴)
-- `qwen-3-32b` - Qwen 3 32B
-- `qwen-3-next-80b` - Qwen 3 Next 80B
+- `qwen-3-32` - Qwen 3 32B
+- `qwen3-next` - Qwen 3 Next 80B
 
 ### Kimi 模型 (月之暗面)
 - `kimi-k2-thinking` - Kimi K2 Thinking

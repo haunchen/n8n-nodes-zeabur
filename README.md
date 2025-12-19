@@ -6,14 +6,13 @@ Zeabur AI Hub provides unified API access to multiple AI models, including Claud
 
 [中文文檔 (Chinese Documentation)](README.zh-TW.md)
 
-![Zeabur AI Hub Node](https://raw.githubusercontent.com/zeabur/n8n-nodes-zeabur/main/docs/screenshot.png)
-
 ## ✨ Features
 
-- 🤖 **AI Agent Integration** - Provides a Chat Model node that works with n8n's AI Agent
-- 🌐 **Multi-Model Support** - Access Claude, Gemini, GPT, DeepSeek, Qwen, GLM, Kimi, and more through a single API
-- 📋 **Dynamic Model List** - Automatically fetches the latest available models from the API
-- 🌍 **Multi-Region Endpoints** - Supports Tokyo (HND1) and San Francisco (SFO1) regions
+- 🤖 AI Agent Integration - Provides a Chat Model node that works with n8n's AI Agent
+- 💬 Standalone Chat Node - Use Zeabur AI Hub directly in your workflows without AI Agent
+- 🌐 Multi-Model Support - Access Claude, Gemini, GPT, DeepSeek, Qwen, GLM, Kimi, and more through a single API
+- 📋 Dynamic Model List - Automatically fetches the latest available models from the API
+- 🌍 Multi-Region Endpoints - Supports Tokyo (HND1) and San Francisco (SFO1) regions
 
 ## 📋 Prerequisites
 
@@ -25,7 +24,7 @@ Zeabur AI Hub provides unified API access to multiple AI models, including Claud
 ### Method 1: Install via n8n Community Nodes
 
 1. Go to **Settings** > **Community Nodes**
-2. Search for `n8n-nodes-zeabur`
+2. Search for `@haunchen/n8n-nodes-zeabur`
 3. Click **Install**
 
 ### Method 2: Manual Installation
@@ -35,7 +34,7 @@ Zeabur AI Hub provides unified API access to multiple AI models, including Claud
 cd ~/.n8n/custom
 
 # Install the package
-npm install n8n-nodes-zeabur
+npm install @haunchen/n8n-nodes-zeabur
 ```
 
 ### Method 3: Docker Installation
@@ -44,7 +43,7 @@ In a Docker environment, set the environment variable:
 
 ```yaml
 environment:
-  - N8N_CUSTOM_EXTENSIONS=n8n-nodes-zeabur
+  - N8N_CUSTOM_EXTENSIONS=@haunchen/n8n-nodes-zeabur
 ```
 
 ## ⚙️ Credential Setup
@@ -62,12 +61,22 @@ environment:
 
 ## 📖 Usage
 
+### Standalone Chat Node
+
+The Zeabur AI Hub node can be used directly in your workflows for simple chat completions:
+
+1. Add a Zeabur AI Hub node to your workflow
+2. Configure credentials
+3. Select a model (choose from the list or manually enter a model ID)
+4. Enter your message
+5. Optional: Adjust Temperature, Max Tokens, Top P, and penalty parameters
+
 ### Using with AI Agent
 
-This node provides **Zeabur AI Hub Chat Model**, which can be used as a language model for n8n AI Agent:
+The Zeabur AI Hub Chat Model can be used as a language model for n8n AI Agent:
 
-1. Add an **AI Agent** node
-2. Add **Zeabur AI Hub Chat Model** to the **Chat Model** connection
+1. Add an AI Agent node
+2. Add Zeabur AI Hub Chat Model to the Chat Model connection
 3. Configure credentials
 4. Select a model (choose from the list or manually enter a model ID)
 5. Optional: Adjust Temperature, Max Tokens, and other parameters
@@ -82,6 +91,7 @@ Zeabur AI Hub supports a wide variety of AI models. For the complete list, pleas
 
 ### Gemini Models (Google)
 - `gemini-3-pro-preview` - Gemini 3 Pro Preview
+- `gemini-3-flash-preview` - Gemini 3 Flash Preview
 - `gemini-2.5-pro` - Gemini 2.5 Pro
 - `gemini-2.5-flash` - Gemini 2.5 Flash
 - `gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
@@ -107,8 +117,8 @@ Zeabur AI Hub supports a wide variety of AI models. For the complete list, pleas
 - `llama-3.3-70b` - Llama 3.3 70B
 
 ### Qwen Models (Alibaba)
-- `qwen-3-32b` - Qwen 3 32B
-- `qwen-3-next-80b` - Qwen 3 Next 80B
+- `qwen-3-32` - Qwen 3 32B
+- `qwen3-next` - Qwen 3 Next 80B
 
 ### Kimi Models (Moonshot AI)
 - `kimi-k2-thinking` - Kimi K2 Thinking

@@ -1,6 +1,6 @@
 {
 	"name": "@haunchen/n8n-nodes-zeabur",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "n8n community node for Zeabur AI Hub integration, supporting OpenAI, Claude, Gemini and more AI models",
 	"publishConfig": {
 		"access": "public"

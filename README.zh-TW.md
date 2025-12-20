@@ -126,3 +126,7 @@ Zeabur AI Hub 支援多種 AI 模型，完整清單請參考 [模型總表](http
 ## 📄 授權
 
 MIT License - 詳見 [LICENSE](LICENSE.md)
+
+## 👤 作者
+
+[Frank Chen](https://www.frankchen.tw/personal)

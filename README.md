@@ -21,30 +21,9 @@ Zeabur AI Hub provides unified API access to multiple AI models, including Claud
 
 ## 🚀 Installation
 
-### Method 1: Install via n8n Community Nodes
-
 1. Go to **Settings** > **Community Nodes**
 2. Search for `@haunchen/n8n-nodes-zeabur`
 3. Click **Install**
-
-### Method 2: Manual Installation
-
-```bash
-# Navigate to n8n custom nodes directory
-cd ~/.n8n/custom
-
-# Install the package
-npm install @haunchen/n8n-nodes-zeabur
-```
-
-### Method 3: Docker Installation
-
-In a Docker environment, set the environment variable:
-
-```yaml
-environment:
-  - N8N_CUSTOM_EXTENSIONS=@haunchen/n8n-nodes-zeabur
-```
 
 ## ⚙️ Credential Setup
 
@@ -149,3 +128,7 @@ Issues and Pull Requests are welcome!
 ## 📄 License
 
 MIT License - See [LICENSE](LICENSE.md)
+
+## 👤 Author
+
+[Frank Chen](https://www.frankchen.tw/personal)
